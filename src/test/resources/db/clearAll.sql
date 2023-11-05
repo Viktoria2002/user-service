@@ -1,2 +1,1 @@
-DELETE FROM clients;
-DELETE FROM couriers;
+DELETE FROM users;

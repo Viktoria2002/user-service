@@ -50,6 +50,9 @@ public class UserServiceImpl implements UserService {
   @Override
   public UUID findCourier() {
     List<User> courierList = userRepository.findUsersByRole(Role.COURIER);
+    if (courierList.isEmpty()) {
+      throw new UserNotFoundException("Couriers were not found");
+    }
     int randomIndex = new Random().nextInt(courierList.size());
     return courierList.get(randomIndex).getId();
   }
