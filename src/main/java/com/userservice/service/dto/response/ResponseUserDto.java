@@ -19,4 +19,6 @@ public class ResponseUserDto {
   private String firstName;
 
   private String lastName;
+
+  private String role;
 }

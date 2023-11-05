@@ -1,26 +1,29 @@
 package com.userservice.model;
 
+import com.userservice.model.enums.Role;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
-import java.lang.annotation.Inherited;
+import jakarta.persistence.Table;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@MappedSuperclass
+@Entity
+@Table(name = "users")
 @AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-public abstract class User {
+public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -33,9 +36,16 @@ public abstract class User {
   @Column(name = "first_name", nullable = false)
   private String firstName;
 
+  @Column(name = "email", nullable = false)
+  private String email;
+
   @Column(name = "login", nullable = false)
   private String login;
 
   @Column(name = "password", nullable = false)
   private String password;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "role", nullable = false)
+  private Role role;
 }

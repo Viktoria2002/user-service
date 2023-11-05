@@ -1,7 +1,7 @@
 package com.userservice.controller;
 
-import com.userservice.model.Courier;
-import com.userservice.service.CourierService;
+import com.userservice.model.User;
+import com.userservice.service.UserService;
 import com.userservice.service.dto.request.RequestUserDto;
 import com.userservice.service.dto.response.ResponseUserDto;
 import java.util.UUID;
@@ -15,29 +15,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user-service/couriers")
+@RequestMapping("/user-service/users")
 @AllArgsConstructor
-public class CourierController {
+public class UserController {
 
-  private final CourierService courierService;
+  private final UserService userService;
 
   @GetMapping("/authorization")
   public ResponseUserDto getCourier(@RequestBody RequestUserDto userDto) {
-    return courierService.getUserByLoginAndPassword(userDto);
+    return userService.getUserByLoginAndPassword(userDto);
   }
 
   @GetMapping("/findCourier")
   public ResponseEntity getCourierOfDelivery() {
-    UUID courierId = courierService.findCourier();
+    UUID courierId = userService.findCourier();
     HttpHeaders headers = new HttpHeaders();
-    headers.add("courierId", String.valueOf(courierId));
+    headers.add("userId", String.valueOf(courierId));
     return ResponseEntity.ok()
         .headers(headers)
         .body(null);
   }
 
   @PostMapping("/register")
-  public ResponseUserDto saveClient(@RequestBody Courier courier) {
-    return courierService.saveUser(courier);
+  public ResponseUserDto saveClient(@RequestBody User user) {
+    return userService.saveUser(user);
   }
 }
