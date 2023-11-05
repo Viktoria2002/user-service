@@ -41,6 +41,13 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public String findAddressByUserId(String id) {
+    User user = userRepository.findById(UUID.fromString(id)).orElseThrow(
+        () -> new UserNotFoundException("User was not fount"));
+    return user.getAddress();
+  }
+
+  @Override
   public UUID findCourier() {
     List<User> courierList = userRepository.findUsersByRole(Role.COURIER);
     int randomIndex = new Random().nextInt(courierList.size());

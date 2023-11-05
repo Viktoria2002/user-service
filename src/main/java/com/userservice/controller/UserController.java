@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,17 +28,31 @@ public class UserController {
   }
 
   @GetMapping("/findCourier")
-  public ResponseEntity getCourierOfDelivery() {
+  public ResponseEntity<Void> getCourierOfDelivery() {
     UUID courierId = userService.findCourier();
-    HttpHeaders headers = new HttpHeaders();
-    headers.add("userId", String.valueOf(courierId));
-    return ResponseEntity.ok()
-        .headers(headers)
-        .body(null);
+    HttpHeaders headers = createHeaders("userId", String.valueOf(courierId));
+    return createResponseEntity(headers);
+  }
+
+  @GetMapping("/getUserAddress")
+  public ResponseEntity<Void> getUserAddress(@RequestHeader String userId) {
+    String address = userService.findAddressByUserId(userId);
+    HttpHeaders headers = createHeaders("address", address);
+    return createResponseEntity(headers);
   }
 
   @PostMapping("/register")
   public ResponseUserDto saveClient(@RequestBody User user) {
     return userService.saveUser(user);
+  }
+
+  private HttpHeaders createHeaders(String headerName, String headerValue) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.add(headerName, headerValue);
+    return headers;
+  }
+
+  private ResponseEntity<Void> createResponseEntity(HttpHeaders headers) {
+    return ResponseEntity.ok().headers(headers).body(null);
   }
 }

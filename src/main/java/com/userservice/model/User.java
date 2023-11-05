@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @EqualsAndHashCode
 public class User {
@@ -38,6 +40,9 @@ public class User {
 
   @Column(name = "email", nullable = false)
   private String email;
+
+  @Column(name = "address", nullable = false)
+  private String address;
 
   @Column(name = "login", nullable = false)
   private String login;

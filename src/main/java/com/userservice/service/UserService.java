@@ -11,5 +11,7 @@ public interface UserService {
 
     ResponseUserDto saveUser(User user);
 
+    String findAddressByUserId(String id);
+
     UUID findCourier();
 }
