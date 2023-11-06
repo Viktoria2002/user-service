@@ -41,7 +41,7 @@ public class User {
   @Column(name = "email", nullable = false)
   private String email;
 
-  @Column(name = "address", nullable = false)
+  @Column(name = "address")
   private String address;
 
   @Column(name = "login", nullable = false)
