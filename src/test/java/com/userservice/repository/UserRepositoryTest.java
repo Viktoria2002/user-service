@@ -25,9 +25,6 @@ class UserRepositoryTest {
   void testFindUserByLoginAndPassword() {
     User user = User.builder()
         .id(UUID.fromString("9aa344c4-a549-49c1-a025-ccc7c9771d48"))
-        .firstName("FN1")
-        .lastName("LN1")
-        .email("fn1@mail.ru")
         .address("addr1")
         .login("login1")
         .password("password1")
