@@ -32,15 +32,6 @@ public class User {
   @Column(name = "id", nullable = false)
   private UUID id;
 
-  @Column(name = "last_name", nullable = false)
-  private String lastName;
-
-  @Column(name = "first_name", nullable = false)
-  private String firstName;
-
-  @Column(name = "email", nullable = false)
-  private String email;
-
   @Column(name = "address")
   private String address;
 
