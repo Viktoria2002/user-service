@@ -42,9 +42,10 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public String findAddressByUserId(String id) {
-    User user = userRepository.findById(UUID.fromString(id)).orElseThrow(
-        () -> new UserNotFoundException("User was not fount"));
-    return user.getAddress();
+//    User user = userRepository.findById(UUID.fromString(id)).orElseThrow(
+//        () -> new UserNotFoundException("User was not fount"));
+//    return user.getAddress();
+    return "addr";
   }
 
   @Override
